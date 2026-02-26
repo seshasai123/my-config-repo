@@ -1,0 +1,27 @@
+kind: "MaintenanceTasks"
+version: "1"
+metadata:
+  # Only apply this config on dev; add "stage", "prod" as needed
+  envTypes: ["dev"]
+
+data:
+  versionPurge:
+    maximumVersions: 15
+    maximumAgeDays: 30
+    minimumVersions: 1
+    retainLabelledVersions: false
+    paths:
+      - "/content"
+
+  auditLogPurge:
+    rules:
+      - name: "replication-events"
+        maximumAgeDays: 30
+        contentPath: "/content"
+        types:
+          - "Activate"
+          - "Deactivate"
+          - "Delete"
+          - "Test"
+          - "Reverse"
+          - "Internal Poll"
