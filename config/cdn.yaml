@@ -42,15 +42,3 @@ data:
             - reqProperty: path
               like: "/internal*"
         action: block
-
-      #    3b. But allow trusted IP (allow has precedence over block)
-      - name: allow-internal-from-office-ip
-        when:
-          allOf:
-            - reqProperty: tier
-              equals: "publish"
-            - reqProperty: path
-              like: "/internal*"
-            - reqProperty: clientIp
-              equals: "203.0.113.10"   # <-- replace with your office IP
-        action: allow
